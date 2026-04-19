@@ -1223,7 +1223,7 @@
 <section class="dashboard" id="dashboard">
   <div class="container">
     <div class="section-head reveal">
-      <span class="kicker">05 / dashboard</span>
+      <span class="kicker">04 / dashboard</span>
       <h2>Your agents' attack log, in one place.</h2>
       <p>Every verdict, signed and onchain. Here's what the operator view looks like.</p>
     </div>
@@ -1325,100 +1325,111 @@
             <span class="net-count">12 agents connected</span>
           </div>
           <svg class="net-graph" viewBox="0 0 700 320">
-            <!-- web lines from center -->
-            <g stroke="var(--line)" stroke-width="1" opacity=".35">
-              <line x1="350" y1="150" x2="140" y2="60"/>
-              <line x1="350" y1="150" x2="560" y2="60"/>
-              <line x1="350" y1="150" x2="90" y2="180"/>
-              <line x1="350" y1="150" x2="610" y2="180"/>
-              <line x1="350" y1="150" x2="160" y2="280"/>
-              <line x1="350" y1="150" x2="540" y2="280"/>
-              <line x1="350" y1="150" x2="350" y2="30"/>
-              <line x1="350" y1="150" x2="350" y2="300"/>
-              <line x1="350" y1="150" x2="230" y2="260"/>
-              <line x1="350" y1="150" x2="470" y2="260"/>
-              <line x1="350" y1="150" x2="220" y2="100"/>
-              <line x1="350" y1="150" x2="480" y2="100"/>
+            <!-- dense peer-to-peer mesh — every node connects to 3-5 neighbors, no central hub -->
+            <g stroke="var(--ink-3)" stroke-width="1.5" opacity=".55">
+              <!-- outer ring connections -->
+              <line x1="110" y1="80" x2="260" y2="45"/>
+              <line x1="260" y1="45" x2="440" y2="45"/>
+              <line x1="440" y1="45" x2="590" y2="80"/>
+              <line x1="590" y1="80" x2="630" y2="200"/>
+              <line x1="630" y1="200" x2="540" y2="285"/>
+              <line x1="540" y1="285" x2="380" y2="300"/>
+              <line x1="380" y1="300" x2="220" y2="280"/>
+              <line x1="220" y1="280" x2="100" y2="200"/>
+              <line x1="100" y1="200" x2="110" y2="80"/>
+              <!-- cross-mesh (inner diagonal connections) -->
+              <line x1="110" y1="80" x2="350" y2="160"/>
+              <line x1="260" y1="45" x2="350" y2="160"/>
+              <line x1="440" y1="45" x2="350" y2="160"/>
+              <line x1="590" y1="80" x2="350" y2="160"/>
+              <line x1="630" y1="200" x2="350" y2="160"/>
+              <line x1="540" y1="285" x2="350" y2="160"/>
+              <line x1="380" y1="300" x2="350" y2="160"/>
+              <line x1="220" y1="280" x2="350" y2="160"/>
+              <line x1="100" y1="200" x2="350" y2="160"/>
+              <!-- extra cross-links for density -->
+              <line x1="110" y1="80" x2="440" y2="45"/>
+              <line x1="260" y1="45" x2="590" y2="80"/>
+              <line x1="590" y1="80" x2="540" y2="285"/>
+              <line x1="100" y1="200" x2="380" y2="300"/>
+              <line x1="220" y1="280" x2="630" y2="200"/>
+              <line x1="110" y1="80" x2="220" y2="280"/>
+              <line x1="440" y1="45" x2="630" y2="200"/>
+              <line x1="260" y1="45" x2="100" y2="200"/>
+              <line x1="590" y1="80" x2="380" y2="300"/>
+              <line x1="540" y1="285" x2="110" y2="80"/>
             </g>
-            <!-- cross-links between nodes -->
-            <g stroke="var(--line)" stroke-width=".7" opacity=".15">
-              <line x1="140" y1="60" x2="220" y2="100"/>
-              <line x1="220" y1="100" x2="350" y2="30"/>
-              <line x1="350" y1="30" x2="480" y2="100"/>
-              <line x1="480" y1="100" x2="560" y2="60"/>
-              <line x1="560" y1="60" x2="610" y2="180"/>
-              <line x1="610" y1="180" x2="540" y2="280"/>
-              <line x1="540" y1="280" x2="470" y2="260"/>
-              <line x1="470" y1="260" x2="350" y2="300"/>
-              <line x1="350" y1="300" x2="230" y2="260"/>
-              <line x1="230" y1="260" x2="160" y2="280"/>
-              <line x1="160" y1="280" x2="90" y2="180"/>
-              <line x1="90" y1="180" x2="140" y2="60"/>
+            <!-- secondary mesh lines -->
+            <g stroke="var(--ink-3)" stroke-width="1" opacity=".3">
+              <line x1="260" y1="45" x2="540" y2="285"/>
+              <line x1="440" y1="45" x2="220" y2="280"/>
+              <line x1="100" y1="200" x2="590" y2="80"/>
+              <line x1="630" y1="200" x2="110" y2="80"/>
+              <line x1="380" y1="300" x2="260" y2="45"/>
+              <line x1="220" y1="280" x2="440" y2="45"/>
             </g>
-            <!-- active data flow line -->
-            <line x1="140" y1="60" x2="350" y2="150" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 4" opacity=".8">
+
+            <!-- animated data flow between peers -->
+            <line x1="110" y1="80" x2="260" y2="45" stroke="var(--ocean-600)" stroke-width="2.5" stroke-dasharray="6 4" opacity=".85">
               <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.2s" repeatCount="indefinite"/>
             </line>
-            <line x1="350" y1="150" x2="560" y2="60" stroke="var(--crab)" stroke-width="1.8" stroke-dasharray="4 3" opacity=".6">
-              <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1s" repeatCount="indefinite"/>
+            <line x1="260" y1="45" x2="440" y2="45" stroke="var(--ocean-600)" stroke-width="2" stroke-dasharray="5 4" opacity=".7">
+              <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="1s" repeatCount="indefinite"/>
             </line>
-            <line x1="350" y1="150" x2="470" y2="260" stroke="var(--crab)" stroke-width="1.8" stroke-dasharray="4 3" opacity=".6">
-              <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.1s" repeatCount="indefinite"/>
+            <line x1="260" y1="45" x2="350" y2="160" stroke="var(--ocean-600)" stroke-width="2" stroke-dasharray="5 4" opacity=".7">
+              <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="1.1s" repeatCount="indefinite"/>
+            </line>
+            <line x1="350" y1="160" x2="540" y2="285" stroke="var(--crab)" stroke-width="2" stroke-dasharray="5 3" opacity=".7">
+              <animate attributeName="stroke-dashoffset" from="0" to="-16" dur="0.9s" repeatCount="indefinite"/>
+            </line>
+            <line x1="350" y1="160" x2="630" y2="200" stroke="var(--crab)" stroke-width="2" stroke-dasharray="5 3" opacity=".7">
+              <animate attributeName="stroke-dashoffset" from="0" to="-16" dur="1s" repeatCount="indefinite"/>
             </line>
 
-            <!-- center registry node -->
-            <circle cx="350" cy="150" r="28" fill="var(--paper-3)" stroke="var(--ocean-800)" stroke-width="2.5"/>
-            <circle cx="350" cy="150" r="38" fill="none" stroke="var(--ocean-400)" stroke-width="1" opacity=".3">
-              <animate attributeName="r" values="38;52;38" dur="3s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values=".3;0;.3" dur="3s" repeatCount="indefinite"/>
-            </circle>
-            <text x="350" y="147" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="700" fill="var(--ocean-900)">Claw</text>
-            <text x="350" y="162" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--muted)">REGISTRY</text>
-
-            <!-- reporting node (highlighted) -->
-            <circle cx="140" cy="60" r="16" fill="var(--bone)" stroke="var(--ocean-600)" stroke-width="2">
+            <!-- nodes — all equal size, no central hub -->
+            <!-- reporting node -->
+            <circle cx="110" cy="80" r="16" fill="var(--bone)" stroke="var(--ocean-800)" stroke-width="2.5">
               <animate attributeName="r" values="16;18;16" dur="2s" repeatCount="indefinite"/>
             </circle>
-            <text x="140" y="57" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ocean-900)">7f</text>
-            <text x="140" y="67" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--ocean-600)">report</text>
-            <text x="140" y="42" text-anchor="middle" font-family="Caveat, cursive" font-size="11" fill="var(--crab)">reporting</text>
+            <text x="110" y="77" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="var(--ocean-900)">7f</text>
+            <text x="110" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--ocean-600)">report</text>
 
-            <!-- normal user nodes -->
-            <circle cx="560" cy="60" r="14" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="560" y="57" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">a1</text>
-            <text x="560" y="67" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">cached</text>
+            <circle cx="260" cy="45" r="15" fill="var(--bone)" stroke="var(--ocean-800)" stroke-width="2"/>
+            <text x="260" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">a1</text>
+            <text x="260" y="53" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">relay</text>
 
-            <circle cx="90" cy="180" r="13" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="90" y="177" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">c4</text>
-            <text x="90" y="187" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">polling</text>
+            <circle cx="440" cy="45" r="15" fill="var(--bone)" stroke="var(--ocean-800)" stroke-width="2"/>
+            <text x="440" y="42" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">c4</text>
+            <text x="440" y="53" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">cached</text>
 
-            <circle cx="610" cy="180" r="13" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="610" y="177" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">0e</text>
-            <text x="610" y="187" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">cached</text>
+            <circle cx="590" cy="80" r="15" fill="var(--bone)" stroke="var(--ink-3)" stroke-width="2"/>
+            <text x="590" y="77" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">0e</text>
+            <text x="590" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">sync</text>
 
-            <circle cx="160" cy="280" r="12" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="160" y="283" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">b2</text>
+            <circle cx="630" cy="200" r="14" fill="var(--bone)" stroke="var(--ink-3)" stroke-width="2"/>
+            <text x="630" y="197" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">b2</text>
+            <text x="630" y="208" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">cached</text>
 
-            <circle cx="540" cy="280" r="12" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="540" y="283" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">3a</text>
+            <circle cx="540" cy="285" r="14" fill="var(--bone)" stroke="var(--ink-3)" stroke-width="2"/>
+            <text x="540" y="282" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">3a</text>
+            <text x="540" y="293" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">sync</text>
 
-            <circle cx="350" cy="30" r="11" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="350" y="33" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">9d</text>
+            <circle cx="380" cy="300" r="14" fill="var(--bone)" stroke="var(--ink-3)" stroke-width="2"/>
+            <text x="380" y="297" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">9d</text>
+            <text x="380" y="308" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">cached</text>
 
-            <circle cx="350" cy="300" r="11" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="350" y="303" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">e5</text>
+            <circle cx="220" cy="280" r="14" fill="var(--bone)" stroke="var(--ink-3)" stroke-width="2"/>
+            <text x="220" y="277" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">e5</text>
+            <text x="220" y="288" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">polling</text>
 
-            <circle cx="230" cy="260" r="10" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="230" y="263" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">f1</text>
+            <circle cx="100" cy="200" r="14" fill="var(--bone)" stroke="var(--ink-3)" stroke-width="2"/>
+            <text x="100" y="197" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">f1</text>
+            <text x="100" y="208" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">sync</text>
 
-            <circle cx="470" cy="260" r="10" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="470" y="263" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">d7</text>
-
-            <circle cx="220" cy="100" r="10" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="220" y="103" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">42</text>
-
-            <circle cx="480" cy="100" r="10" fill="var(--paper-3)" stroke="var(--line-2)" stroke-width="1.5"/>
-            <text x="480" y="103" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">8c</text>
+            <!-- inner node (not a hub, just another peer) -->
+            <circle cx="350" cy="160" r="15" fill="var(--bone)" stroke="var(--ocean-800)" stroke-width="2"/>
+            <text x="350" y="157" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="var(--ink)">d7</text>
+            <text x="350" y="168" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">relay</text>
           </svg>
         </div>
       </div>
@@ -1430,7 +1441,7 @@
 <section class="who" id="who">
   <div class="container">
     <div class="section-head reveal">
-      <span class="kicker">04 / who it's for</span>
+      <span class="kicker">05 / who it's for</span>
       <h2>Built for everyone shipping agents.</h2>
     </div>
 
