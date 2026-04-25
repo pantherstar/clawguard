@@ -27,7 +27,7 @@ aws = ["boto3>=1.34", "botocore>=1.34", "eth-account>=0.13.0", "coincurve>=19.0.
 ocr = ["pytesseract>=0.3.10"]
 audio = ["openai-whisper>=20250625"]
 pdf-gen = ["reportlab>=4.0.0"]
-demo = ["alpaca-py>=0.43.2"]
+demo = ["alpaca-py>=0.43.3"]
 observability = [
     "opentelemetry-api>=1.20.0",
     "opentelemetry-sdk>=1.20.0",
