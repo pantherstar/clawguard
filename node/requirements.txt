@@ -6,4 +6,4 @@ web3>=7.0.0,<8
 eth-account>=0.13.0,<0.14
 coincurve>=19.0.0,<21
 cryptography>=42.0.0,<46
-requests>=2.32.0,<3
+requests>=2.33.1,<3
