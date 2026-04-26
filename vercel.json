@@ -1,11 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "pip install --no-cache-dir -r requirements.txt && pip install --no-cache-dir -e . --no-deps && cd dashboard && npm ci",
-  "buildCommand": "cd dashboard && npm run build && mkdir -p ../public && cp -r dist/* ../public/",
+  "installCommand": "if [ -d frontend ]; then cd frontend; else cd ../frontend; fi && npm ci",
+  "buildCommand": "if [ -d frontend ]; then cd frontend; else cd ../frontend; fi && npm run build && mkdir -p ../public && cp -r dist/* ../public/",
   "functions": {
     "api/**/*.py": {
-      "excludeFiles": "{.git/**,.worktrees/**,.venv/**,**/__pycache__/**,**/.pytest_cache/**,**/*.pyc,contracts/cache/**,contracts/out/**,contracts/lib/**,dashboard/node_modules/**,detector/bench/**,blockchain/**,network/**,store/**,**/tests/**,**/test_*.py,learning/tests/**,zk/tests/**,demo/**,public/**}"
+      "runtime": "python3.12",
+      "excludeFiles": "{.git/**,.worktrees/**,.venv/**,**/{__pycache__,.pytest_cache,tests}/**,**/*.pyc,**/test_*.py,contracts/{cache,out,lib}/**,{dashboard,frontend}/node_modules/**,{detector/bench,blockchain,network,store,demo,public,learning/tests,zk/tests}/**}"
     }
   },
   "rewrites": [

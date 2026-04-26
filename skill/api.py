@@ -726,7 +726,7 @@ def _aws_account_and_region() -> tuple[str, str]:
         account = ident.get("Account", "") or ""
         if not region:
             region = sts.meta.region_name or ""
-    except Exception:  # noqa: BLE001 — any failure means "not configured"
+    except Exception:
         pass
     return account, region
 
@@ -740,7 +740,7 @@ def _signer_address_safe() -> str:
         from skill.chain.kms_signer import KmsSigner
 
         return KmsSigner(key_id).address
-    except Exception:  # noqa: BLE001 — missing boto3 / no creds / no access
+    except Exception:
         return ""
 
 
@@ -826,7 +826,7 @@ async def chain_validators():
                 miner = getattr(blk, "miner", None) or blk.get("miner", "")
                 if miner:
                     producers[miner] = producers.get(miner, 0) + 1
-            except Exception:  # noqa: BLE001
+            except Exception:
                 continue
         ordered = sorted(producers.items(), key=lambda kv: kv[1], reverse=True)
         return {
@@ -837,7 +837,7 @@ async def chain_validators():
             ],
             "window": 8,
         }
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         return {"available": False, "error": str(exc), "validators": []}
 
 
